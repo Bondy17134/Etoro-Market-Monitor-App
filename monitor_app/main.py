@@ -1,14 +1,47 @@
 from fastapi import FastAPI
-import requests 
+from .config import get_setting
+import requests
 
 app = FastAPI()
+setting = get_setting()
+
+headers = {
+    "x-request-id": setting.request_id,
+    "x-api-key": setting.api_key,
+    "x-user-key": setting.user_key
+}
 
 @app.get("/")
 def root():
-    return {'message': 'Welcome to Etoro Market Monitor App'}
+    return {'message': "Welcome to Etoro Monitor App"}
 
-@app.get("/get_list")
-def get_list():
+@app.get("/curated_list", name = "Curated investment lists")
+def get_curated_list():
     api_url = "https://public-api.etoro.com/api/v1/curated-lists"
-    all_lists = requests.get(api_url).json()
-    return all_lists
+    headers 
+    response = requests.get(
+        api_url,
+        headers=headers
+    )
+    return response.json()
+
+@app.get("/watchlist", name = "Watchlists")
+def get_watchlist():
+    api_url = "https://public-api.etoro.com/api/v1/watchlists?itemsPerPageForSingle=100&ensureBuiltinWatchlists=true"
+    headers 
+    response = requests.get(
+        api_url,
+        headers=headers
+    )
+    return response.json()
+
+@app.get("/portfolio", name = "Portfolio")
+def get_portfolio():
+    username = "KunanonToonsap"
+    api_url = f"https://public-api.etoro.com/api/v1/user-info/people/{username}/portfolio/live"
+    headers 
+    response = requests.get(
+        api_url,
+        headers=headers
+    )
+    return response.json()

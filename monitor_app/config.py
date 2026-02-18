@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
+import uuid
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
@@ -7,7 +8,7 @@ class Settings(BaseSettings):
         case_sensitive=False,
         extra="ignore"
     )
-    request_id: str
+    request_id: str = str(uuid.uuid4())
     api_key: str 
     user_key: str 
 
