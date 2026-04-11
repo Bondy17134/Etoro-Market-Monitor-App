@@ -34,14 +34,3 @@ def get_watchlist():
         headers=headers
     )
     return response.json()
-
-@router.get("/portfolio", name = "Portfolio")
-def get_portfolio():
-    username = "KunanonToonsap"
-    api_url = f"https://public-api.etoro.com/api/v1/user-info/people/{username}/portfolio/live"
-    headers 
-    response = requests.get(
-        api_url,
-        headers=headers
-    )
-    return response.json()
