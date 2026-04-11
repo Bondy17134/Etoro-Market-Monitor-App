@@ -1,10 +1,10 @@
 """ Handle routing for Etoro related endpoints """
 from fastapi import APIRouter
 import requests
-from monitor_app.api import router
 from monitor_app.core.config import get_setting
 
 setting = get_setting()
+router = APIRouter()
 
 headers = {
     "x-request-id": setting.request_id,
