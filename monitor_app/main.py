@@ -5,4 +5,4 @@ from monitor_app.api.router import router
 app = FastAPI()
 
 # Include routes from router.py
-app.include_router(router, prefix="/main", tags=["Basic Information"])
+app.include_router(router, prefix="/api/v1", tags=["Basic Information"])
