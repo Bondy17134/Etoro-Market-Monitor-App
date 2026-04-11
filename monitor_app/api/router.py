@@ -1,47 +1,12 @@
-""" Handle the access routing of the App"""
-
+""" Handle the main router for the app (Centralized Routings) """
 from fastapi import APIRouter
-import requests
-from monitor_app.config.config import get_setting
+#from monitor_app.api.v1.auth.routes import router as auth_router
+#from monitor_app.api.v1.user.routes import router as user_router
+from monitor_app.api.v1.etoro.routes import router as etoro_router
+from monitor_app.api.v1.portfolio.routes import router as portfolio_router
 
 router = APIRouter()
-
-setting = get_setting()
-
-# Temporary
-headers = {
-    "x-request-id": setting.request_id,
-    "x-api-key": setting.api_key,
-    "x-user-key": setting.user_key
-}
-
-@router.get("/curated_list", name = "Curated investment lists")
-def get_curated_list():
-    api_url = "https://public-api.etoro.com/api/v1/curated-lists"
-    headers 
-    response = requests.get(
-        api_url,
-        headers=headers
-    )
-    return response.json()
-
-@router.get("/watchlist", name = "Watchlists")
-def get_watchlist():
-    api_url = "https://public-api.etoro.com/api/v1/watchlists?itemsPerPageForSingle=100&ensureBuiltinWatchlists=true"
-    headers 
-    response = requests.get(
-        api_url,
-        headers=headers
-    )
-    return response.json()
-
-@router.get("/portfolio", name = "Portfolio")
-def get_portfolio():
-    username = "KunanonToonsap"
-    api_url = f"https://public-api.etoro.com/api/v1/user-info/people/{username}/portfolio/live"
-    headers 
-    response = requests.get(
-        api_url,
-        headers=headers
-    )
-    return response.json()
+#router.include_router(auth_router, prefix="/auth", tags=["Authentication"])
+#router.include_router(user_router, prefix="/users", tags=["Users"])
+router.include_router(etoro_router, prefix="/etoro", tags=["Etoro"])
+router.include_router(portfolio_router, prefix="/portfolio", tags=["Portfolio"])
