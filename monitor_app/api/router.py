@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter
 import requests
-from monitor_app.config.config import get_setting
+from monitor_app.core.config import get_setting
 
 router = APIRouter()
 
