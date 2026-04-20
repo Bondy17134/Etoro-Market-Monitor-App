@@ -1,0 +1,3 @@
+"""
+Defines user database model
+"""

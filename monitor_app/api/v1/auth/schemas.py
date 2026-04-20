@@ -1,3 +1,6 @@
+"""
+Defines request and response schemas
+"""
 from pydantic import BaseModel
 
 # A passing ticket after successful login

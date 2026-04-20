@@ -1,0 +1,3 @@
+"""
+Handles user authentication logic
+"""
