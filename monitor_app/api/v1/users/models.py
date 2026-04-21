@@ -2,7 +2,7 @@
 Defines user database model
 """
 from sqlalchemy import Boolean, Column, Integer, String
-from auth.database import Base
+from monitor_app.api.v1.auth.database import Base
 
 class User(Base):
     __tablename__ = "users"
