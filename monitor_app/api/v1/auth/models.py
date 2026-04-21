@@ -1,3 +1,11 @@
-""" Handles auth database models. (Later) """
+""" 
+Handles auth database models. (Later)
+"""
+from pydantic import BaseModel
 
-https://www.geeksforgeeks.org/python/authentication-and-authorization-with-fastapi/
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None
