@@ -13,12 +13,9 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password: str
 
-# Data sent back to client after user creation
-class UserResponse(UserBase):
-    id: int 
-
+class User(UserBase): 
+    id: int
+    is_active: bool
+    
     class Config:
         orm_mode = True
-    
-    # for modern pydantic v2
-    #model_config = ConfigDict(from_attributes=True)
