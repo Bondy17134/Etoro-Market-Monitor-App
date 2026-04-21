@@ -3,15 +3,11 @@ from fastapi import APIRouter
 import requests
 from monitor_app.api import router
 from monitor_app.core.config import get_setting
+from monitor_app.core.http import headers
 
 setting = get_setting()
 router = APIRouter()
-
-headers = {
-    "x-request-id": setting.request_id,
-    "x-api-key": setting.api_key, 
-    "x-user-key": setting.user_key
-}
+headers = headers
 
 @router.get("/portfolio", name="Portfolio")
 def get_portfolio():
