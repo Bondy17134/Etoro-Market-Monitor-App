@@ -11,6 +11,11 @@ class Settings(BaseSettings):
     request_id: str = str(uuid.uuid4())
     api_key: str 
     user_key: str 
+    db_user: str
+    db_password: str
+    db_host: str
+    db_port: str
+    db_name: str
 
 @lru_cache
 def get_setting() -> Settings:
