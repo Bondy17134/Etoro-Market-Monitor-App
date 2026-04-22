@@ -8,7 +8,7 @@ from .dependencies import get_db, authenticate_user, get_user
 from .utils import create_access_token
 from .models import Token
 from .schemas import UserCreate, UserResponse 
-from users.models import User
+from monitor_app.api.v1.users.models import User
 from .utils import get_password_hash
 
 router = APIRouter()
@@ -30,7 +30,7 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
     db_user = get_user(db, username=user.username)
     if db_user:
         raise HTTPException(status_code=400, detail="Username already registered")
-    hashed_password = get_password_hash(user.username)
+    hashed_password = get_password_hash(user.password)
     db_user = User(username=user.username, hashed_password=hashed_password)
     db.add(db_user)
     db.commit()
